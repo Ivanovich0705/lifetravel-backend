@@ -7,33 +7,29 @@ pipeline {
 	
     stages {
         stage ('Compile Stage Lifetravel') {
-
-            steps {
-                bitbucketStatusNotify(buildState: 'INPROGRESS')
-                try {
-                    withMaven(maven : 'MAVEN_3_8_3') {
-                        sh 'mvn clean compile'
-                    }
-                } catch (Exception e) {
-                      bitbucketStatusNotify(buildState: 'FAILED')
+        
+            bitbucketStatusNotify(buildState: 'INPROGRESS')
+            try {
+                withMaven(maven : 'MAVEN_3_8_3') {
+                    sh 'mvn clean compile'
                 }
-                bitbucketStatusNotify(buildState: 'SUCCESSFUL')
+            } catch (Exception e) {
+                bitbucketStatusNotify(buildState: 'FAILED')
             }
+            bitbucketStatusNotify(buildState: 'SUCCESSFUL') 
         }
 
         stage ('Testing Stage Lifetravel') {
 
-            steps {
-             bitbucketStatusNotify(buildState: 'INPROGRESS')
-                try {
-                    withMaven(maven : 'MAVEN_3_8_3') {
-                        sh 'mvn test'
-                    }
-                } catch (Exception e) {
-                      bitbucketStatusNotify(buildState: 'FAILED')
+            bitbucketStatusNotify(buildState: 'INPROGRESS')
+            try {
+                withMaven(maven : 'MAVEN_3_8_3') {
+                    sh 'mvn test'
                 }
-                bitbucketStatusNotify(buildState: 'SUCCESSFUL')
+            } catch (Exception e) {
+                bitbucketStatusNotify(buildState: 'FAILED')
             }
+            bitbucketStatusNotify(buildState: 'SUCCESSFUL')
         }
 
 	 /*stage ('sonarQube Analysis') {
@@ -45,18 +41,16 @@ pipeline {
 	}*/
 
         stage ('package Stage Lifetravel') {
-            steps {
             
             bitbucketStatusNotify(buildState: 'INPROGRESS')
-                try {
-                    withMaven(maven : 'MAVEN_3_8_3') {
-                        sh 'mvn package'
-                    }
-                } catch (Exception e) {
-                      bitbucketStatusNotify(buildState: 'FAILED')
+            try {
+                withMaven(maven : 'MAVEN_3_8_3') {
+                    sh 'mvn package'
                 }
-                bitbucketStatusNotify(buildState: 'SUCCESSFUL')
+            } catch (Exception e) {
+                bitbucketStatusNotify(buildState: 'FAILED')
             }
+            bitbucketStatusNotify(buildState: 'SUCCESSFUL')
         }
 		/* // Descomentar cuando se tenga instalado en Tomcat
 		stage('Deploy tomcat') {
