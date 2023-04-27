@@ -7,7 +7,8 @@ pipeline {
 	
     stages {
         stage ('Compile Stage Lifetravel') {
-        
+        steps{
+            script{
             bitbucketStatusNotify(buildState: 'INPROGRESS')
             try {
                 withMaven(maven : 'MAVEN_3_8_3') {
@@ -17,10 +18,13 @@ pipeline {
                 bitbucketStatusNotify(buildState: 'FAILED')
             }
             bitbucketStatusNotify(buildState: 'SUCCESSFUL') 
+            }
+            }
         }
 
         stage ('Testing Stage Lifetravel') {
-
+        steps{
+            script{
             bitbucketStatusNotify(buildState: 'INPROGRESS')
             try {
                 withMaven(maven : 'MAVEN_3_8_3') {
@@ -30,6 +34,8 @@ pipeline {
                 bitbucketStatusNotify(buildState: 'FAILED')
             }
             bitbucketStatusNotify(buildState: 'SUCCESSFUL')
+            }
+            }
         }
 
 	 /*stage ('sonarQube Analysis') {
@@ -41,7 +47,8 @@ pipeline {
 	}*/
 
         stage ('package Stage Lifetravel') {
-            
+                    steps{
+            script{
             bitbucketStatusNotify(buildState: 'INPROGRESS')
             try {
                 withMaven(maven : 'MAVEN_3_8_3') {
@@ -51,6 +58,8 @@ pipeline {
                 bitbucketStatusNotify(buildState: 'FAILED')
             }
             bitbucketStatusNotify(buildState: 'SUCCESSFUL')
+            }
+            }
         }
 		/* // Descomentar cuando se tenga instalado en Tomcat
 		stage('Deploy tomcat') {
