@@ -6,7 +6,7 @@ pipeline {
     }
 	
     stages {
-        stage ('Compile Stage 2023-01') {
+        stage ('Compile Stage Lifetravel') {
 
             steps {
                 withMaven(maven : 'MAVEN_3_8_3') {
@@ -15,7 +15,7 @@ pipeline {
             }
         }
 
-        stage ('Testing Stage 2023-01') {
+        stage ('Testing Stage Lifetravel') {
 
             steps {
                 withMaven(maven : 'MAVEN_3_8_3') {
@@ -32,7 +32,7 @@ pipeline {
 		}
 	}*/
 
-        stage ('package Stage 2023-01') {
+        stage ('package Stage Lifetravel') {
             steps {
                 withMaven(maven : 'MAVEN_3_8_3') {
                     sh 'mvn package'
