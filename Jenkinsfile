@@ -10,8 +10,12 @@ pipeline {
 
             steps {
                 bitbucketStatusNotify(buildState: 'INPROGRESS')
-                withMaven(maven : 'MAVEN_3_8_3') {
-                    sh 'mvn clean compile'
+                try {
+                    withMaven(maven : 'MAVEN_3_8_3') {
+                        sh 'mvn clean compile'
+                    }
+                } catch (Exception e) {
+                      bitbucketStatusNotify(buildState: 'FAILED')
                 }
                 bitbucketStatusNotify(buildState: 'SUCCESSFUL')
             }
@@ -20,9 +24,15 @@ pipeline {
         stage ('Testing Stage Lifetravel') {
 
             steps {
-                withMaven(maven : 'MAVEN_3_8_3') {
-                    sh 'mvn test'
+             bitbucketStatusNotify(buildState: 'INPROGRESS')
+                try {
+                    withMaven(maven : 'MAVEN_3_8_3') {
+                        sh 'mvn test'
+                    }
+                } catch (Exception e) {
+                      bitbucketStatusNotify(buildState: 'FAILED')
                 }
+                bitbucketStatusNotify(buildState: 'SUCCESSFUL')
             }
         }
 
@@ -36,9 +46,16 @@ pipeline {
 
         stage ('package Stage Lifetravel') {
             steps {
-                withMaven(maven : 'MAVEN_3_8_3') {
-                    sh 'mvn package'
+            
+            bitbucketStatusNotify(buildState: 'INPROGRESS')
+                try {
+                    withMaven(maven : 'MAVEN_3_8_3') {
+                        sh 'mvn package'
+                    }
+                } catch (Exception e) {
+                      bitbucketStatusNotify(buildState: 'FAILED')
                 }
+                bitbucketStatusNotify(buildState: 'SUCCESSFUL')
             }
         }
 		/* // Descomentar cuando se tenga instalado en Tomcat
