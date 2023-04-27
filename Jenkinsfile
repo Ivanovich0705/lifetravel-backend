@@ -55,9 +55,9 @@ pipeline {
                     sh 'mvn package'
                 }
             } catch (Exception e) {
-                bitbucketStatusNotify(buildState: 'FAILED', buildKey: 'test', buildName: 'Package')
+                bitbucketStatusNotify(buildState: 'FAILED', buildKey: 'pkg', buildName: 'Package')
             }
-            bitbucketStatusNotify(buildState: 'SUCCESSFUL', buildKey: 'test', buildName: 'Package')
+            bitbucketStatusNotify(buildState: 'SUCCESSFUL', buildKey: 'pkg', buildName: 'Package')
             }
             }
         }
