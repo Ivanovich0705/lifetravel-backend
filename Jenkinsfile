@@ -9,9 +9,11 @@ pipeline {
         stage ('Compile Stage Lifetravel') {
 
             steps {
+                bitbucketStatusNotify(buildState: 'INPROGRESS')
                 withMaven(maven : 'MAVEN_3_8_3') {
                     sh 'mvn clean compile'
                 }
+                bitbucketStatusNotify(buildState: 'SUCCESSFUL')
             }
         }
 
