@@ -6,7 +6,7 @@ pipeline {
     }
 	
     stages {
-        stage ('Compile Stage Lifetravel') {
+        stage ('Compile Stage Lifetravell') {
             steps{
                 script{
                     bitbucketStatusNotify(buildState: 'INPROGRESS', buildKey: 'comp', buildName: 'Compile')
