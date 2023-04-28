@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.lifetravel</groupId>
-	<artifactId>backend</artifactId>
+	<artifactId>lifetravel-backend</artifactId>
 	<packaging>war</packaging>
 	<version>1</version>
 	<name>Backend</name>
