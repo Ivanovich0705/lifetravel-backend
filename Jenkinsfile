@@ -66,7 +66,11 @@ pipeline {
             steps {
                 //echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL} direcion ${env.WORKSPACE}"	
                 script {
-                    sh "curl -T /target/backend-1.0.war 'http://tomcat:tomcat@http://172.174.244.114:8080/manager/text/deploy?path=/sample&update=true'"
+                    pwd
+                    cd target
+                    pwd
+                    ls
+                    sh "curl -T target/backend-1.0.war 'http://tomcat:tomcat@http://172.174.244.114:8080/manager/text/deploy?path=/sample&update=true'"
                 }
             }
         }
