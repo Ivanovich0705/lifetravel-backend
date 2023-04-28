@@ -67,7 +67,11 @@ pipeline {
                 //echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL} direcion ${env.WORKSPACE}"	
                 script {
                     pwd
-                    sh "curl -T target/backend-1.0.war 'http://deployer:deployer@172.174.244.114:8080/manager/text/deploy?path=/lifetravell&update=true'"
+                    try{
+                        withMaven(maven : 'MAVEN_3_8_3') {
+                            sh "curl -T target/backend-1.0.war 'http://deployer:deployer@172.174.244.114:8080/manager/text/deploy?path=/lifetravell&update=true'"
+                        }
+                    }
                 }
             }
         }
