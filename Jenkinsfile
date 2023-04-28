@@ -6,7 +6,7 @@ pipeline {
     }
 	
     stages {
-        stage ('Compile Stage Lifetravel') {
+        stage ('Compile Stage Lifetravell') {
             steps{
                 script{
                     bitbucketStatusNotify(buildState: 'INPROGRESS', buildKey: 'comp', buildName: 'Compile')
@@ -61,15 +61,19 @@ pipeline {
                 }
             }
         }
-		/* // Descomentar cuando se tenga instalado en Tomcat
+		// Descomentar cuando se tenga instalado en Tomcat
 		stage('Deploy tomcat') {
             steps {
-                echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL} direcion ${env.WORKSPACE}"	
-                withMaven(maven : 'MAVEN_3_6_3') {
-					bat '"C:\\Program Files\\Git\\mingw64\\bin\\curl.exe" -T ".\\target\\sistema-ventas-spring.war" "http://tomcat:tomcat@localhost:9090/manager/text/deploy?path=/sistema-ventas-spring&update=true"'
-                } 
+                //echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL} direcion ${env.WORKSPACE}"	
+                script {
+                    try{
+                        withMaven(maven : 'MAVEN_3_8_3') {
+                            sh "curl -T target/backend-1.0.war 'http://deployer:deployer@172.174.244.114:8080/manager/text/deploy?path=/lifetravel&update=true'"
+                        }
+                    } catch(Exception e){}
+                }
             }
-        }*/
+        }
 
     }
 }
