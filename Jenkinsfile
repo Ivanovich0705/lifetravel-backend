@@ -68,7 +68,7 @@ pipeline {
                 script {
                     try{
                         withMaven(maven : 'MAVEN_3_8_3') {
-                            sh "curl -T target/lifetravel-backend.war 'http://deployer:deployer@172.174.244.114:8080/manager/text/deploy?path=/&update=true'"
+                            sh "curl -T target/lifetravel-backend-1.war 'http://deployer:deployer@172.174.244.114:8080/manager/text/deploy?path=/&update=true'"
                         }
                     } catch(Exception e){}
                 }
