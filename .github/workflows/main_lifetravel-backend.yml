@@ -50,4 +50,4 @@ jobs:
           app-name: 'lifetravel-backend'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_846EBAE7E3524662BBF6224D406A4886 }}
-          package: '*.jar'
+          package: '*.war'
