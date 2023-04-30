@@ -43,6 +43,16 @@ pipeline {
                     
             }
         }
+	    
+	    stage('Notify Discord') {
+            steps {
+                discordSend(
+                    color: 'GOOD',
+                    message: 'Build successful!',
+                    webhookUrl: 'https://discord.com/api/webhooks/1102325036188188682/KCwm8aPhzoDTTvBSCoS8BtdLADNihkIWyGltcl05NU6PuZA9U257iqlwjF4Ku9dVw8TE'
+                )
+            }
+        }
 		// Descomentar cuando se tenga instalado en Tomcat
 		stage('Deploy tomcat') {
            steps {
