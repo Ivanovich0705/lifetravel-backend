@@ -42,7 +42,7 @@ jobs:
 
       - name: Test with JUnit
         run: |
-          java -jar target/*.jar --tests
+          java -jar target/*.war --tests
 
   deploy:
     runs-on: ubuntu-latest
@@ -64,4 +64,4 @@ jobs:
           app-name: 'lifetravel-backend'
           slot-name: 'production'
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_1ab1dbcac40242928a32066d2ff6482e }}
-          package: '*.jar'
+          package: '*.war'
