@@ -45,14 +45,14 @@ pipeline {
         }
 		// Descomentar cuando se tenga instalado en Tomcat
 		stage('Deploy tomcat') {
-            steps {
-                //echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL} direcion ${env.WORKSPACE}"	
-                
-                        withMaven(maven : 'MAVEN_3_8_3') {
-                            sh "curl -T target/lifetravel-backend-1.war 'http://deployer:deployer@172.174.244.114:8080/manager/text/deploy?path=/github-backend&update=true'"
-                        }
-                    
-            }
+           steps {
+        timeout(time: 5, unit: 'MINUTES') {
+            input "Deploy to tomcat?"
+        }
+        withMaven(maven: 'MAVEN_3_8_3') {
+            sh "curl -T target/lifetravel-backend-1.war 'http://deployer:deployer@172.174.244.114:8080/manager/text/deploy?path=/github-backend&update=true'"
+        }
+    }
         }
 
     }
