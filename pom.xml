@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.lifetravel</groupId>
 	<artifactId>lifetravel-backend</artifactId>
-	<packaging>war<packaging>
+	<packaging>war</packaging>
 	<version>1</version>
 	<name>Backend</name>
 	<description>Lifetravel RESTful API, made with Java and Spring Boot, applying domain-driven architecture approach.</description>
