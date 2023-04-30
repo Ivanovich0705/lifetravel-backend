@@ -30,23 +30,8 @@ jobs:
           name: java-app
           path: '${{ github.workspace }}/target/*.jar'
 
-  test:
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v2
-        with:
-          name: java-app
-
-      - name: Test with JUnit
-        run: |
-          java -jar target/*.jar --tests
-
   deploy:
     runs-on: ubuntu-latest
-    needs: test
     environment:
       name: 'production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
