@@ -6,7 +6,7 @@ pipeline {
     }
 	
     stages {
-        stage ('Compile Stage Lifetravell') {
+        stage ('Compile Stage Lifetravel') {
             steps{
                 
                        withMaven(maven : 'MAVEN_3_8_3') {
